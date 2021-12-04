@@ -6,4 +6,5 @@ export default function EventsPage() {
             <h1>My Events Page</h1>
         </Layout>
     )
+    
 }
