@@ -1,31 +1,34 @@
-import Head from "next/head"
-import styles from "@/styles/Header.module.css"
+import Head from 'next/head'
+import { useRouter } from 'next/router'
 import Header from './Header'
-import Footer from "./Footer"
+import Footer from './Footer'
+import Showcase from './Showcase'
+import InfoBox from './InfoBox'
+import styles from '@/styles/Layout.module.css'
 
-export default function Layout({title,keywords,description,children}) {
-    return (
-        <div>
-            <Head>
-                <title> {title} </title>
-                <meta name="description" content="{description}"></meta>
-                <meta name="keywords" content="{keywords}"></meta>
-            </Head>
+export default function Layout({ title, keywords, description, children }) {
+  const router = useRouter()
 
-            <Header/>
-            <div className={styles.container}>
-               {children}
-            </div>
-            <Footer/>
-           
-        </div>
-        
-    )
+  return (
+    <div>
+      <Head>
+        <title>{title}</title>
+        <meta name='description' content={description} />
+        <meta name='keywords' content={keywords} />
+      </Head>
+
+      <Header />
+
+      {router.pathname === '/' && <Showcase />}
+
+      <div className={styles.container}>{children}</div>
+      <Footer />
+    </div>
+  )
 }
 
-Layout.defaultProps ={
-    title: 'DJ Events | Find the Hottest Parties',
-    description: 'Find the Latest DJ And other Musical Events',
-    keywords: 'music,events, dj,edm'
-
+Layout.defaultProps = {
+  title: 'DJ Events | Find the hottest parties',
+  description: 'Find the latest DJ and other musical events',
+  keywords: 'music, dj, edm, events',
 }
